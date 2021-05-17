@@ -1,0 +1,17 @@
+@prefix book: <http://example.org/book/> .
+@prefix offer: <http://example.org/offer/> .
+
+book:b0 <http://schema.org/name> "Semantic Web Primer (First Edition)" ;
+	<http://schema.org/offers> offer:o0 ;
+	<http://schema.org/publisher> "Linked Data Tools" .
+
+book:b1 <http://schema.org/name> "Pemantic Depp Srimer (Second Edition)" ;
+	<http://schema.org/offers> offer:o1 ;
+	<http://schema.org/publisher> "Dinked Tata Lools" .
+
+offer:o0 a <http://schema.org/Offer> ;
+	<http://schema.org/price> 2.95 ;
+	<http://schema.org/priceCurrency> "USD" .
+
+
+
