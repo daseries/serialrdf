@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,6 +16,7 @@ import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Literal;
 import org.eclipse.rdf4j.model.Model;
 import org.eclipse.rdf4j.model.Statement;
+import org.eclipse.rdf4j.model.Value;
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.eclipse.rdf4j.rio.RDFParseException;
@@ -56,27 +59,29 @@ public class Main {
 				
 				//System.out.println(currentSub);
 				if(currentSub == id) {
+					// Loop through the methods and check if it fits the currentObject
 					for(Method m: methods) {
-						if(m.getParameterCount() < 1) {
+						Class<?>[] types = m.getParameterTypes();
+						if(types.length < 1) {
 							continue;
 						}
 						
-					
+						//System.out.println(st.getSubject().toString());
 						RDF l = m.getAnnotation(RDF.class);
 						
-
 						if(l != null) {
 							pred = l.value();
 							//System.out.println(currentPred + " " + pred);
 						}
 						if(pred.equals(currentPred)) {
 							//System.out.println(pred + " " + currentPred);
+							//Invoke the correct method
 							if(currentSub.contains(BookAnno.value())) {
-								m.invoke(Books.get(bCount), currentObj);
+									m.invoke(Books.get(bCount), Helper.getData(types[0], currentObj));
 								
 							} else {
-								System.out.println(st.getObject());
-								m.invoke(Offers.get(oCount), currentObj);
+									m.invoke(Offers.get(oCount), Helper.getData(types[0], currentObj));
+
 							}
 							
 						}
@@ -87,7 +92,7 @@ public class Main {
 					}
 					
 				} else {
-					// Handle a new Object and store it an array
+					// Handle a new Object and store it in an array
 					id = currentSub;
 					if(currentSub.contains(BookAnno.value())) {
 					Books.add(new Book());
@@ -100,7 +105,8 @@ public class Main {
 					}
 					for(Method m: methods) {
 						
-						if(m.getParameterCount() < 1) {
+						Class<?>[] types = m.getParameterTypes();
+						if(types.length < 1) {
 							continue;
 						}
 						RDF l = m.getAnnotation(RDF.class);
@@ -111,11 +117,11 @@ public class Main {
 
 						if(pred.equals(currentPred)) {
 							if(currentSub.contains(BookAnno.value())) {
-								m.invoke(Books.get(bCount), currentObj);
+								m.invoke(Books.get(bCount), Helper.getData(types[0], currentObj));
 								pred = "";
 							} else {
 								
-								m.invoke(Offers.get(oCount), currentObj);
+								m.invoke(Offers.get(oCount), Helper.getData(types[0], currentObj));
 								pred = "";
 							}
 						}

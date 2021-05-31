@@ -1,5 +1,8 @@
 package anno;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RDFNamespaces({
     "book = http://example.org/book/",
     "offer = http://example.org/offer/"
@@ -7,10 +10,10 @@ package anno;
 
 @RDFObject("http://example.org/book/")
 public class Book {
-	private String id;
-    private String name;
-    private String offers;
-    private String publisher;
+	private String id; //Identifier
+    private String name; //Name of the Book
+    List<String> offers = new ArrayList<String>(); //All the offers for the book
+    private String publisher; //The publisher of the book
     
     public Book() {
     }
@@ -36,13 +39,13 @@ public class Book {
     }  
     
     @RDF("http://schema.org/offers")
-	public String getOffers() {
+	public List getOffers() {
 		return offers;
 	}
     
     @RDF("http://schema.org/offers")
     public void setOffers(String offers) {
-        this.offers = offers;
+    	this.offers.add(offers);
     }
     
     @RDF("http://schema.org/publisher")

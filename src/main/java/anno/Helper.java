@@ -1,6 +1,7 @@
 package anno;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 
 public class Helper {
 
@@ -17,6 +18,13 @@ public class Helper {
 		Method[] methodsO = OfferClass.getDeclaredMethods();
 		return methodsO;
 		
+	}
+	
+	public static Object getData(Type type, String cur) {
+		if(type.getTypeName() == "java.lang.Double") {
+			return Double.parseDouble(cur);
+		}
+		return cur;		
 	}
 	
 	

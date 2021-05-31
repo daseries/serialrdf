@@ -7,9 +7,9 @@ package anno;
 
 @RDF("offer:Offer")
 public class Offer {
-	private String id;
-    private String price;
-    private String priceCurrency;
+	private String id; //Identifier
+    private Double price; //Amount of the offer
+    private String priceCurrency; //Currency of the price
     
     public Offer() {
     }
@@ -24,12 +24,12 @@ public class Offer {
     }
     
     @RDF("http://schema.org/price")
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
     @RDF("http://schema.org/price")
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     } 
     
