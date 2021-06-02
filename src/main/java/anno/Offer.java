@@ -2,10 +2,11 @@ package anno;
 
 
 @RDFNamespaces({
-    "offer = http://example.org/offer/"
+    "offer", 
+    "http://example.org/offer/"
 })
 
-@RDF("offer:Offer")
+@RDFObject("http://example.org/offer/")
 public class Offer {
 	private String id; //Identifier
     private Double price; //Amount of the offer
@@ -19,6 +20,7 @@ public class Offer {
         return id;
     }
 
+    @RDFSubject("offer:")
     public void setId(String id) {
         this.id = id;
     }

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RDFNamespaces({
-    "book = http://example.org/book/",
-    "offer = http://example.org/offer/"
+    "book",
+    "http://example.org/book/"
 })
 
 @RDFObject("http://example.org/book/")
