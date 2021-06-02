@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Appenders>
+	<File name="MyFile" fileName="all.log" immediateFlush="true" append="false">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+	<Logger name="org.mongodb.driver" level="error" additivity="true">
+            <appender-ref ref="MyFile" level="error" />
+        </Logger>
+		<Root level="trace">
+<!-- 			<AppenderRef ref="Console" /> -->
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>
