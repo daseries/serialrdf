@@ -1,6 +1,7 @@
 package anno;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
@@ -45,9 +46,18 @@ public class PojoRdfHelper {
             Method methods[] = c.getDeclaredMethods();
             Method getID = c.getDeclaredMethod("getId");
             String subject = (String) getID.invoke(o);
-            for (Method m : methods) {
+            for (Method m : methods) {     	
                 RDF methodAnnotation = m.getAnnotation(RDF.class);
                 if (methodAnnotation != null && m.getParameterCount() < 1) {
+                	if(m.getReturnType().equals(List.class)) {
+                		List<Object> item = (List<Object>) m.invoke(o);
+                		for(Object i: item) {
+                			mb.add(subject, methodAnnotation.value().toString(), i);
+                		}
+                		continue;
+                	}
+                	
+                	
                     mb.add(subject, methodAnnotation.value().toString(), m.invoke(o));
                 } else {
                     continue;
@@ -62,7 +72,7 @@ public class PojoRdfHelper {
 				Rio.write(model, out, RDFFormat.TURTLE);
 			}
 		}
-        return byteArrayOutputStream.toString(StandardCharsets.UTF_8);
+        return byteArrayOutputStream.toString();
 
     }
 

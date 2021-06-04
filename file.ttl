@@ -3,15 +3,15 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 book:b0 <http://schema.org/name> "Semantic Web Primer (First Edition)" ;
-	<http://schema.org/offers> "[http://example.org/offer/o0, http://example.org/offer/o1]" ;
+	<http://schema.org/offers> "http://example.org/offer/o0" , "http://example.org/offer/o1" ;
 	<http://schema.org/publisher> "Linked Data Tools" .
 
 book:b1 <http://schema.org/name> "Pemantic Depp Srimer (Second Edition)" ;
-	<http://schema.org/offers> "[http://example.org/offer/o1]" ;
+	<http://schema.org/offers> "http://example.org/offer/o1" ;
 	<http://schema.org/publisher> "Dinked Tata Lools" .
 
-offer:o0 <http://schema.org/priceCurrency> "USD" ;
-	<http://schema.org/price> "2.95"^^xsd:double .
+offer:o0 <http://schema.org/price> "2.95"^^xsd:double ;
+	<http://schema.org/priceCurrency> "USD" .
 
-offer:o1 <http://schema.org/priceCurrency> "USD" ;
-	<http://schema.org/price> "2.95"^^xsd:double .
+offer:o1 <http://schema.org/price> "2.95"^^xsd:double ;
+	<http://schema.org/priceCurrency> "USD" .

@@ -2,8 +2,7 @@
 @prefix offer: <http://example.org/offer/> .
 
 book:b0 <http://schema.org/name> "Semantic Web Primer (First Edition)" ;
-	<http://schema.org/offers> offer:o0 ;
-	<http://schema.org/offers> offer:o1 ;
+	<http://schema.org/offers> offer:o0, offer:o1;
 	<http://schema.org/publisher> "Linked Data Tools" .
 
 book:b1 <http://schema.org/name> "Pemantic Depp Srimer (Second Edition)" ;

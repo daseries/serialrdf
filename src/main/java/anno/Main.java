@@ -18,7 +18,6 @@ import java.util.List;
 public class Main {
 
 	private static final Logger LOG = LogManager.getLogger(Main.class);
-
 	
 	public static void main(String[] args) throws RDFParseException, UnsupportedRDFormatException, FileNotFoundException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, NoSuchMethodException, SecurityException {
 		// TODO Auto-generated method stub
